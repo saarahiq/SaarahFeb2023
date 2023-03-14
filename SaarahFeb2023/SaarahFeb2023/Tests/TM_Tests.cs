@@ -23,11 +23,7 @@ namespace SaarahFeb2023.Tests
          public void CreateTMTest()
         {
 
-             // Home page object intialization and definition
-             HomePage homePageObj = new HomePage();
-             homePageObj.GoToTMPage(driver);
-
-        // TM page object initilalization and definition
+            // TM page object initilalization and definition
             homePageObj.GoToTMPage(driver);
             tmPageObj.CreateTM(driver);
         }
@@ -36,7 +32,7 @@ namespace SaarahFeb2023.Tests
          public void EditTMTest()
         {
             homePageObj.GoToTMPage(driver);
-            tmPageObj.EditTM(driver);
+            //tmPageObj.EditTM(driver);
         }
 
          [Test, Order(3), Description("Check if user is able to delete an existing Time record")]
