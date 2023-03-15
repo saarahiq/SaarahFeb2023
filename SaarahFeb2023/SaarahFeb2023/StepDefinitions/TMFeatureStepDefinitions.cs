@@ -52,16 +52,36 @@ namespace SaarahFeb2023.StepDefinitions
             Assert.That(newDescription == "Feb2023", "Actual description and expected description do not match.");
             Assert.That(newPrice == "65", "Actual price and expected price do not match.");
         }
-        [When(@"I update '([^']*)' on an existing time and material record")]
-        public void WhenIUpdateOnAnExistingTimeAndMaterialRecord(string description)
+        //[When(@"I update '([^']*)' on an existing time and material record")]
+        //public void WhenIUpdateOnAnExistingTimeAndMaterialRecord(string description)
+        // {
+        //    tmPageObj.EditTM(driver, description);
+        //}
+
+        //[Then(@"The record should have the updated '([^']*)'")]
+        //public void ThenTheRecordShouldHaveTheUpdated(string description)
+        //{
+
+        //}
+        [When(@"I update '([^']*)', '([^']*)', '([^']*)' on an existing time and material record")]
+        public void WhenIUpdateOnAnExistingTimeAndMaterialRecord(string description, string code, string price)
         {
-            tmPageObj.EditTM(driver, description);
+            tmPageObj.EditTM(driver, description, code, price);
         }
 
-        [Then(@"The record should have the updated '([^']*)'")]
-        public void ThenTheRecordShouldHaveTheUpdated(string description)
+        [Then(@"The record should have the updated '([^']*)', '([^']*)', '([^']*)'")]
+        public void ThenTheRecordShouldHaveTheUpdated(string description, string code, string price)
         {
+            string editedDescription = tmPageObj.GetEditedDescription(driver);
+            string editedCode = tmPageObj.GetEditedCode(driver);
+            string editedPrice = tmPageObj.GetEditedPrice(driver);
 
+            Assert.That(editedDescription == description, "Actual description and expected description do not match.");
+            Assert.That(editedCode == code, "Actual code and expected code do not match.");
+            Assert.That(editedPrice == price, "Actual price and expected price do not match.");
+
+            // editedDescription is the actual value, because obtained from the webpage, we edit and get value from page but don't know if it is edited or not
+            // description is the expected value because we have given the values and based on our requirements
         }
 
     }
